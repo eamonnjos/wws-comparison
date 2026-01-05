@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeWriteSpeeches Service Comparison</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            padding: 20px;
+            background: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .comparison-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Desktop Table View */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,51,102,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            display: table;
+        }
+        
+        .comparison-table thead tr {
+            background: #003366;
+            color: white;
+        }
+        
+        .comparison-table thead th {
+            padding: 20px 15px;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            border-right: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .comparison-table thead th:first-child {
+            text-align: left;
+            width: 35%;
+        }
+        
+        .comparison-table thead th:last-child {
+            border-right: none;
+        }
+        
+        .comparison-table tbody tr.category-header td {
+            background: #f5f8fa;
+            padding: 15px;
+            font-weight: 700;
+            font-size: 16px;
+            color: #003366;
+            border-top: 2px solid #003366;
+        }
+        
+        .comparison-table tbody tr.feature-row td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e8e8e8;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .comparison-table tbody tr.feature-row td:first-child {
+            text-align: left;
+            font-weight: 400;
+        }
+        
+        .comparison-table tbody tr.feature-row:hover {
+            background: #f9fbfc;
+        }
+        
+        .checkmark {
+            color: #003366;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .empty-cell {
+            color: #ccc;
+        }
+        
+        .footnote-ref {
+            color: #003366;
+            font-weight: 600;
+            font-size: 12px;
+            vertical-align: super;
+        }
+        
+        /* Mobile Card View */
+        .mobile-cards {
+            display: none;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,51,102,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .service-card-header {
+            background: #003366;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .service-card-body {
+            padding: 20px;
+        }
+        
+        .mobile-category {
+            background: #f5f8fa;
+            padding: 12px 15px;
+            font-weight: 700;
+            font-size: 15px;
+            color: #003366;
+            margin: 15px -20px 10px -20px;
+            border-left: 4px solid #003366;
+        }
+        
+        .mobile-category:first-child {
+            margin-top: 0;
+        }
+        
+        .mobile-feature {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e8e8e8;
+            font-size: 14px;
+        }
+        
+        .mobile-feature:last-child {
+            border-bottom: none;
+        }
+        
+        .mobile-feature-name {
+            flex: 1;
+            padding-right: 15px;
+        }
+        
+        .mobile-feature-value {
+            flex-shrink: 0;
+            font-size: 18px;
+        }
+        
+        .footnotes {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f5f8fa;
+            border-left: 4px solid #003366;
+            border-radius: 4px;
+        }
+        
+        .footnotes p {
+            font-size: 13px;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+        
+        .footnotes p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Tablet adjustments */
+        @media (max-width: 900px) {
+            .comparison-table thead th,
+            .comparison-table tbody td {
+                padding: 10px 8px;
+                font-size: 12px;
+            }
+            
+            .comparison-table thead th {
+                font-size: 14px;
+            }
+            
+            .comparison-table tbody tr.category-header td {
+                font-size: 14px;
+                padding: 12px 8px;
+            }
+        }
+        
+        /* Mobile: Switch to card view */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .comparison-table {
+                display: none;
+            }
+            
+            .mobile-cards {
+                display: block;
+            }
+            
+            .footnotes {
+                padding: 15px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="comparison-container">
+        <!-- Desktop/Tablet Table View -->
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Features & Benefits</th>
+                    <th>FREE</th>
+                    <th>ESSENTIAL+</th>
+                    <th>COMPREHENSIVE</th>
+                    <th>ELITE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Timeline Management -->
+                <tr class="category-header">
+                    <td colspan="5">Timeline Management</td>
+                </tr>
+                <tr class="feature-row">
+                    <td>Project assignment notifications</td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                </tr>
+                <tr class="feature-row">
+                    <td>First Draft Due Reminders</td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                </tr>
+                <tr class="feature-row">
+                    <td>Speech Review deadline reminders</td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span><span class="footnote-ref">**</span></td>
+                </tr>
+                
+                <!-- Speech Timing -->
+                <tr class="category-header">
+                    <td colspan="5">Speech Timing</td>
+                </tr>
+                <tr class="feature-row">
+                    <td>Activity/Event Planning</td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                </tr>
+                <tr class="feature-row">
+                    <td>Timer Lights</td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                </tr>
+                
+                <!-- Content Coordination & Development -->
+                <tr class="category-header">
+                    <td colspan="5">Content Coordination & Development</td>
+                </tr>
+                <tr class="feature-row">
+                    <td>Speech Content Planning</td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                </tr>
+                <tr class="feature-row">
+                    <td>Speech Project chapter in briefing pack<span class="footnote-ref">*</span></td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                </tr>
+                <tr class="feature-row">
+                    <td>Speechwriting tool</td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span><span class="footnote-ref">***</span></td>
+                </tr>
+                <tr class="feature-row">
+                    <td>Professional (human) speechwriting</td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                </tr>
+                
+                <!-- Quality Control -->
+                <tr class="category-header">
+                    <td colspan="5">Quality Control</td>
+                </tr>
+                <tr class="feature-row">
+                    <td>Detailed Expectation Setting<span class="footnote-ref">*</span></td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                </tr>
+                <tr class="feature-row">
+                    <td>Speech Reviewing</td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                </tr>
+                
+                <!-- Speaker Guidance & Support -->
+                <tr class="category-header">
+                    <td colspan="5">Speaker Guidance & Support</td>
+                </tr>
+                <tr class="feature-row">
+                    <td>Personalised Summary Webpage</td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                </tr>
+                <tr class="feature-row">
+                    <td>Detailed Personalized Briefing Book<span class="footnote-ref">*</span></td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                </tr>
+                <tr class="feature-row">
+                    <td>Email Course</td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                </tr>
+                <tr class="feature-row">
+                    <td>Kick-off interview</td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                </tr>
+                <tr class="feature-row">
+                    <td>Coaching</td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="empty-cell">—</span></td>
+                    <td><span class="checkmark">✓</span></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Mobile Card View -->
+        <div class="mobile-cards">
+            <!-- FREE Card -->
+            <div class="service-card">
+                <div class="service-card-header">FREE</div>
+                <div class="service-card-body">
+                    <div class="mobile-category">Timeline Management</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Project assignment notifications</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">First Draft Due Reminders</div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speech Review deadline reminders</div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                    
+                    <div class="mobile-category">Speech Timing</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Activity/Event Planning</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Timer Lights</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    
+                    <div class="mobile-category">Content Coordination & Development</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speech Content Planning</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speech Project chapter in briefing pack<span class="footnote-ref">*</span></div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speechwriting tool</div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Professional (human) speechwriting</div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                    
+                    <div class="mobile-category">Quality Control</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Detailed Expectation Setting<span class="footnote-ref">*</span></div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speech Reviewing</div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                    
+                    <div class="mobile-category">Speaker Guidance & Support</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Personalised Summary Webpage</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Detailed Personalized Briefing Book<span class="footnote-ref">*</span></div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Email Course</div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Kick-off interview</div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Coaching</div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ESSENTIAL+ Card -->
+            <div class="service-card">
+                <div class="service-card-header">ESSENTIAL+</div>
+                <div class="service-card-body">
+                    <div class="mobile-category">Timeline Management</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Project assignment notifications</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">First Draft Due Reminders</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speech Review deadline reminders</div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                    
+                    <div class="mobile-category">Speech Timing</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Activity/Event Planning</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Timer Lights</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    
+                    <div class="mobile-category">Content Coordination & Development</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speech Content Planning</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speech Project chapter in briefing pack<span class="footnote-ref">*</span></div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speechwriting tool</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Professional (human) speechwriting</div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                    
+                    <div class="mobile-category">Quality Control</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Detailed Expectation Setting<span class="footnote-ref">*</span></div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speech Reviewing</div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                    
+                    <div class="mobile-category">Speaker Guidance & Support</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Personalised Summary Webpage</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Detailed Personalized Briefing Book<span class="footnote-ref">*</span></div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Email Course</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Kick-off interview</div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Coaching</div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- COMPREHENSIVE Card -->
+            <div class="service-card">
+                <div class="service-card-header">COMPREHENSIVE</div>
+                <div class="service-card-body">
+                    <div class="mobile-category">Timeline Management</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Project assignment notifications</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">First Draft Due Reminders</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speech Review deadline reminders</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    
+                    <div class="mobile-category">Speech Timing</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Activity/Event Planning</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Timer Lights</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    
+                    <div class="mobile-category">Content Coordination & Development</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speech Content Planning</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speech Project chapter in briefing pack<span class="footnote-ref">*</span></div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speechwriting tool</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Professional (human) speechwriting</div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                    
+                    <div class="mobile-category">Quality Control</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Detailed Expectation Setting<span class="footnote-ref">*</span></div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speech Reviewing</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    
+                    <div class="mobile-category">Speaker Guidance & Support</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Personalised Summary Webpage</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Detailed Personalized Briefing Book<span class="footnote-ref">*</span></div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Email Course</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Kick-off interview</div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Coaching</div>
+                        <div class="mobile-feature-value"><span class="empty-cell">—</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ELITE Card -->
+            <div class="service-card">
+                <div class="service-card-header">ELITE</div>
+                <div class="service-card-body">
+                    <div class="mobile-category">Timeline Management</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Project assignment notifications</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">First Draft Due Reminders</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speech Review deadline reminders</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span><span class="footnote-ref">**</span></div>
+                    </div>
+                    
+                    <div class="mobile-category">Speech Timing</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Activity/Event Planning</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Timer Lights</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    
+                    <div class="mobile-category">Content Coordination & Development</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speech Content Planning</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speech Project chapter in briefing pack<span class="footnote-ref">*</span></div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speechwriting tool</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span><span class="footnote-ref">***</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Professional (human) speechwriting</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    
+                    <div class="mobile-category">Quality Control</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Detailed Expectation Setting<span class="footnote-ref">*</span></div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Speech Reviewing</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    
+                    <div class="mobile-category">Speaker Guidance & Support</div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Personalised Summary Webpage</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Detailed Personalized Briefing Book<span class="footnote-ref">*</span></div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Email Course</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Kick-off interview</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                    <div class="mobile-feature">
+                        <div class="mobile-feature-name">Coaching</div>
+                        <div class="mobile-feature-value"><span class="checkmark">✓</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footnotes">
+            <p><span class="footnote-ref">*</span> These three benefits are delivered via the same detailed briefing pack. This PDF-format 'book' tells the speaker what content their speech should include, sets detailed expectations that improve quality upfront, and provides guidance on other aspects of public speaking (such as managing stage fright) that guide and support the speaker.</p>
+            
+            <p><span class="footnote-ref">**</span> Reminders for Elite includes reminders to review speeches written for them, not just reminders to upload their own versions of the speech draft.</p>
+            
+            <p><span class="footnote-ref">***</span> Our adaptive questionnaire-driven speechwriting tool is available to ELITE customers, if they wish to try it (though professional speechwriters primarily write their speeches).</p>
+        </div>
+    </div>
+</body>
+</html>
